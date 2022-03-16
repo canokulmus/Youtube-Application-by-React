@@ -3,6 +3,8 @@ import SearchBar from "./SearchBar";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
 import useVideos from "../hooks/useVideos";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const App = () => {
 
@@ -34,29 +36,39 @@ const App = () => {
     }
 
 
-    return (<div className="ui container" style={{ margin: 30 }}>
-        <SearchBar
-            onFormSubmit={search}
-        />
+    return (
 
-        <div className="ui grid">
 
-            <div className="ui row">
+        <div>
+            <Navbar />
+            <div className="ui container" style={{ margin: 30 }}>
+                <SearchBar
+                    onFormSubmit={search}
+                />
 
-                <div className="eleven wide column" style={{ display: videoDetailDisplay }}>
+                <div className="ui grid">
 
-                    <VideoDetail video={selectedVideo} />
+                    <div className="ui row">
+
+                        <div className="eleven wide column" style={{ display: videoDetailDisplay }}>
+
+                            <VideoDetail video={selectedVideo} />
+                        </div>
+
+                        <div className={`${videoListWide} wide column`}  >
+
+                            <VideoList videos={videos} videoListWide={videoListWide} onVideoSelect={onVideoSelect} />
+                        </div>
+
+                    </div>
+
                 </div>
-
-                <div className={`${videoListWide} wide column`}  >
-
-                    <VideoList videos={videos} videoListWide={videoListWide} onVideoSelect={onVideoSelect} />
-                </div>
-
             </div>
-
+            <Footer/>
         </div>
-    </div>);
+
+
+    );
 
 
 }
